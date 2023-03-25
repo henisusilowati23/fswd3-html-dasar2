@@ -1000,3 +1000,41 @@ let mahasiswa = [
   { id: 998, name: "Blythe Motsinger", gender: "F", score: 61 },
   { id: 999, name: "Christeen Paris", gender: "M", score: 82 },
 ];
+
+var fem = mahasiswa.filter((element) => element.gender == "F");
+
+var mal = mahasiswa.filter((element) => element.gender == "M");
+
+let totalfem = fem.reduce((val, element) => {
+  return val + element.score;
+}, 0);
+
+let totalmal = mal.reduce((val, element) => {
+  return val + element.score;
+}, 0);
+
+var scfem = fem.map((element) => element.score);
+var scmal = mal.map((element) => element.score);
+
+let hasil = {
+  female: {
+    count: fem.length,
+    score: {
+      average: totalfem / fem.length,
+      max: Math.max.apply(Math, scfem),
+      min: Math.min.apply(Math, scfem),
+    },
+    students: fem,
+  },
+  male: {
+    count: mal.length,
+    score: {
+      average: totalmal / mal.length,
+      max: Math.max.apply(Math, scmal),
+      min: Math.min.apply(Math, scmal),
+    },
+    students: mal,
+  },
+};
+
+console.log(hasil);
